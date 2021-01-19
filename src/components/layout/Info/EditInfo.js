@@ -17,7 +17,7 @@ const EditInfo = () => {
   let history = useHistory();
   const dispatch = useDispatch();
   const getData = useSelector((state) => state.infos.info);
-  console.log(getData);
+  // console.log(getData);
 
   const [data, setData] = useState({
     id: cuid(),
@@ -26,13 +26,6 @@ const EditInfo = () => {
     phone: "",
   });
   const { name, email, phone } = data;
-
-  const CreateData = (e) => {
-    e.preventDefault();
-
-    dispatch(addInfo(data));
-    history.push("/");
-  };
 
   function handleChange(e) {
     // console.log(e.target.name);

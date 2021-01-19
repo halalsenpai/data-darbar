@@ -25,7 +25,7 @@ const Info = ({ info }) => {
       <td>{phone}</td>
       <td className="actions">
         <Link to={`/EditData/${id}`}>
-          <span className="material-icons text-primary">edit</span>
+          <span className="material-icons text-primary edit-delete">edit</span>
         </Link>
 
         <span

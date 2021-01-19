@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Info from "./Info";
 
 const Infos = () => {
+  const [selectAll, setselectAll] = useState(false);
+
   const info = useSelector((state) => state.infos.infos);
 
   return (
@@ -12,8 +14,16 @@ const Infos = () => {
         <tr>
           <th>
             <div className="custom-control custom-checkbox">
-              <input type="checkbox" className="custom-control-input" />
-              <label className="custom-control-label"></label>
+              <input
+                id="selectAll"
+                type="checkbox"
+                className="custom-control-input"
+                onClick={() => setselectAll()}
+              />
+              <label
+                htmlFor="selectAll"
+                className="custom-control-label"
+              ></label>
             </div>
           </th>
           <th>Name</th>
