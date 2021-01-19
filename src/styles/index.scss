@@ -1,0 +1,11 @@
+$primary: #009cb8;
+$danger: #ff0000;
+$secondary: #9d00b9;
+
+//Bootstrap and its default variables
+
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  padding-top: 5rem;
+}

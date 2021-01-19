@@ -1,0 +1,14 @@
+.actions {
+  opacity: 0;
+}
+.actions span {
+  padding: 0 0.2rem;
+}
+tr:hover .actions {
+  opacity: 1;
+}
+
+tbody tr:hover {
+  color: black;
+  background-color: rgb(255, 255, 255);
+}
