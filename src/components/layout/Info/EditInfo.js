@@ -1,15 +1,18 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addInfo } from "../../../actions/CreateDataAction";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getInfo, addInfo } from "../../../actions/CreateDataAction";
 import cuid from "cuid";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
-const CreateInfos = () => {
+const EditInfo = () => {
+  let { id } = useParams();
+
   // const [name, setName] = useState("");
   // const [email, setEmail] = useState("");
   // const [number, setNumber] = useState("");
   let history = useHistory();
   const dispatch = useDispatch();
+  const getData = useSelector((state) => state.infos.infos.info);
 
   const [data, setData] = useState({
     id: cuid(),
@@ -34,6 +37,11 @@ const CreateInfos = () => {
       [e.target.name]: e.target.value,
     });
   }
+
+  //UseEffect
+  useEffect(() => {
+    dispatch(getInfo(id));
+  }, []);
 
   return (
     <div className="card border-0 shadow">
@@ -82,4 +90,4 @@ const CreateInfos = () => {
   );
 };
 
-export default CreateInfos;
+export default EditInfo;

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Info from "./Info";
 
 const Infos = () => {
-  const info = useSelector((state) => state.infos);
+  const info = useSelector((state) => state.infos.infos);
 
   return (
     <table className="table table-dark shadow ">
@@ -24,7 +24,7 @@ const Infos = () => {
       </thead>
       <tbody>
         {info.map((info) => (
-          <Info info={info} />
+          <Info info={info} key={info.id} />
         ))}
       </tbody>
     </table>

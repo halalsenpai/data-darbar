@@ -5,6 +5,7 @@ import "./styles/App.scss";
 import { Provider } from "react-redux";
 import store from "./store";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import EditInfo from "./components/layout/Info/EditInfo";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={Infos} />
                 <Route exact path="/CreateData" component={CreateInfos} />
+                <Route exact path="/EditData/:id" component={EditInfo} />
               </Switch>
             </div>
           </div>
