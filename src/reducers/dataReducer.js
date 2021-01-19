@@ -1,4 +1,9 @@
-import { CREATE_DATA, GET_DATA } from "../constant/types";
+import {
+  CREATE_DATA,
+  GET_DATA,
+  UPDATE_DATA,
+  DELETE_DATA,
+} from "../constant/types";
 
 const initialState = {
   infos: [
@@ -244,13 +249,28 @@ export const dataReducer = (state = initialState, action) => {
       };
     case GET_DATA:
       let arr = state.infos.filter((info) => info.id == action.payload);
+      //  console.log(arr);
       arr = arr.values();
+
       for (let val of arr) {
         arr = val;
+        // console.log("new value", arr);
       }
       return {
         ...state,
         info: arr,
+      };
+    case UPDATE_DATA:
+      return {
+        ...state,
+        infos: state.infos.map((info) =>
+          info.id == action.payload.id ? action.payload : info
+        ),
+      };
+    case DELETE_DATA:
+      return {
+        ...state,
+        infos: state.infos.filter((info) => info.id != action.payload),
       };
     default:
       return state;

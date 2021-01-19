@@ -12,3 +12,8 @@ tbody tr:hover {
   color: black;
   background-color: rgb(255, 255, 255);
 }
+.edit-delete {
+  &:hover {
+    color: rgb(190, 0, 0) !important;
+  }
+}

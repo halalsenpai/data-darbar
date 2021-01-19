@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getInfo, addInfo } from "../../../actions/CreateDataAction";
+import {
+  getInfo,
+  addInfo,
+  updateInfo,
+} from "../../../actions/CreateDataAction";
 import cuid from "cuid";
 import { useHistory, useParams } from "react-router-dom";
 
@@ -12,7 +16,8 @@ const EditInfo = () => {
   // const [number, setNumber] = useState("");
   let history = useHistory();
   const dispatch = useDispatch();
-  const getData = useSelector((state) => state.infos.infos.info);
+  const getData = useSelector((state) => state.infos.info);
+  console.log(getData);
 
   const [data, setData] = useState({
     id: cuid(),
@@ -30,7 +35,7 @@ const EditInfo = () => {
   };
 
   function handleChange(e) {
-    console.log(e.target.name);
+    // console.log(e.target.name);
 
     setData({
       ...data,
@@ -40,14 +45,30 @@ const EditInfo = () => {
 
   //UseEffect
   useEffect(() => {
+    if (getData != null) {
+      setData(getData);
+    }
     dispatch(getInfo(id));
-  }, []);
+  }, [getData]);
+
+  const UpdateData = (e) => {
+    e.preventDefault();
+
+    const updated_data = Object.assign(getData, {
+      name: name,
+      email: email,
+      phone: phone,
+    });
+    console.log(updated_data);
+    dispatch(updateInfo(updated_data));
+    history.push("/");
+  };
 
   return (
     <div className="card border-0 shadow">
       <div className="card-header bg-primary text-light">Add Data</div>
       <div className="card-body">
-        <form onSubmit={(e) => CreateData(e)}>
+        <form onSubmit={(e) => UpdateData(e)}>
           <div className="form-group">
             <input
               className="form-control"
@@ -73,7 +94,7 @@ const EditInfo = () => {
           <div className="form-group">
             <input
               className="form-control"
-              type="number"
+              type="text"
               name="phone"
               required
               placeholder="Enter your phone number"
@@ -81,8 +102,8 @@ const EditInfo = () => {
               onChange={handleChange}
             />
           </div>
-          <button className="btn btn-primary" type="submit">
-            Create Data
+          <button className="btn btn-warning" type="submit">
+            Update Data
           </button>
         </form>
       </div>

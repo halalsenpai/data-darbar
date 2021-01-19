@@ -1,9 +1,14 @@
 import React from "react";
 import Avatar from "react-avatar";
 import { Link } from "react-router-dom";
+import { deleteInfo } from "../../../actions/CreateDataAction";
+import { useDispatch } from "react-redux";
 
 const Info = ({ info }) => {
   const { id, name, phone, email } = info;
+
+  const dispatch = useDispatch();
+
   return (
     <tr>
       <td>
@@ -22,9 +27,13 @@ const Info = ({ info }) => {
         <Link to={`/EditData/${id}`}>
           <span className="material-icons text-primary">edit</span>
         </Link>
-        <Link>
-          <span className="material-icons text-danger">remove_circle</span>
-        </Link>
+
+        <span
+          className="material-icons text-danger edit-delete"
+          onClick={() => dispatch(deleteInfo(id))}
+        >
+          remove_circle
+        </span>
       </td>
     </tr>
   );
