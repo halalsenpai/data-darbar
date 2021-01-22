@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { deleteInfo } from "../../../actions/CreateDataAction";
 import { useDispatch } from "react-redux";
 
-const Info = ({ info }) => {
+const Info = ({ info, selectAll }) => {
   const { id, name, phone, email } = info;
 
   const dispatch = useDispatch();
@@ -13,7 +13,11 @@ const Info = ({ info }) => {
     <tr>
       <td>
         <div className="custom-control custom-checkbox">
-          <input type="checkbox" className="custom-control-input" />
+          <input
+            type="checkbox"
+            className="custom-control-input"
+            checked={selectAll}
+          />
           <label className="custom-control-label"></label>
         </div>
       </td>

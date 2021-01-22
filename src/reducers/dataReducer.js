@@ -3,6 +3,10 @@ import {
   GET_DATA,
   UPDATE_DATA,
   DELETE_DATA,
+  SELECT_CONTACT,
+  SELECT_DATA,
+  CLEAR_DATA,
+  DELELTE_SELECTED_DATA,
 } from "../constant/types";
 
 const initialState = {
@@ -239,6 +243,7 @@ const initialState = {
     },
   ],
   info: null,
+  selectedInfos: [],
 };
 export const dataReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -246,6 +251,7 @@ export const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         infos: [action.payload, ...state.infos],
+        selectedInfos: action.payload,
       };
     case GET_DATA:
       let arr = state.infos.filter((info) => info.id == action.payload);
@@ -272,6 +278,24 @@ export const dataReducer = (state = initialState, action) => {
         ...state,
         infos: state.infos.filter((info) => info.id != action.payload),
       };
+
+    case DELELTE_SELECTED_DATA:
+      return {
+        ...state,
+        infos: [],
+      };
+    case SELECT_DATA:
+      return {
+        ...state,
+        selectedInfos: action.payload,
+      };
+
+    case CLEAR_DATA:
+      return {
+        ...state,
+        selectedInfos: [],
+      };
+
     default:
       return state;
   }
