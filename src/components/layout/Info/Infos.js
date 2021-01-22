@@ -27,7 +27,7 @@ const Infos = () => {
     <div>
       {selectedInfos.length > 0 ? (
         <button
-          className="btn btn-danger float-right my-3"
+          className="btn btn-danger float-right mb-3"
           onClick={() => dispatch(deleteAllInfo())}
         >
           Delete All
